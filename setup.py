@@ -2,13 +2,13 @@ import os
 from setuptools import find_packages, setup
 
 
-with open(os.path.join(os.path.dirname(__file__), 'RIDOCULOUS_README_GENERATED_FOR_DISTUTILS.md')) as readme:
+with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
     README = readme.read()
 
 
 setup(
     name='ridoculous',
-    version='0.0.2',
+    version='0.0.3',
     packages=find_packages(exclude=['examples']),
     include_package_data=True,
     description='Easily document any object to a markdown file',

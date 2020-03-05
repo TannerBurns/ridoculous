@@ -147,26 +147,28 @@ class Ridoculous(object):
         #build Table of Contents
         for o in self.rdoc_objects:
             for m in o.modules:
-                docs.append(m.toc_str)
-                for c in m.classes:
-                    docs.append('\t'+c.toc_str)
-                    for f in c.functions:
-                        docs.append('\t\t'+f.toc_str)
+                if m.classes:
+                    docs.append(m.toc_str)
+                    for c in m.classes:
+                        docs.append('\t'+c.toc_str)
+                        for f in c.functions:
+                            docs.append('\t\t'+f.toc_str)
         docs.append('\n\n')
         #build object docs
         for o in self.rdoc_objects:
             for m in o.modules:
-                docs.append(m)
-                for c in m.classes:
-                    docs.append(c)
-                    for f in c.functions:
-                        docs.append(f)
+                if m.classes:
+                    docs.append(m)
+                    for c in m.classes:
+                        docs.append(c)
+                        for f in c.functions:
+                            docs.append(f)
         return docs
 
-    def write(self, filename: str= 'RIDOCULOUS_README_GENERATED_FOR_DISTUTILS.md'):
+    def write(self, filename: str= 'GENERATED_README.md'):
         with open(filename, 'w') as fout:
             fout.write(''.join(self.docs))
 
     @classmethod
-    def makedocs(cls, objs: List[object]= None, filename: str= 'RIDOCULOUS_README_GENERATED_FOR_DISTUTILS.md'):
+    def makedocs(cls, objs: List[object]= None, filename: str= 'GENERATED_README.md'):
         return cls(objs).write(filename)
