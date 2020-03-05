@@ -3,7 +3,7 @@ import re
 
 from typing import List, NamedTuple
 
-class BaseFunctionRDoc(object):
+class FunctionRDoc(object):
     name: str
     sig: str
     doc: str
@@ -29,8 +29,12 @@ class BaseFunctionRDoc(object):
         if obj:
             for a in dir(obj):
                 attr = getattr(obj, a)
-                if inspect.isfunction(attr) and obj.__name__ in str(attr):
-                    functions.append(cls(attr))
+                if inspect.isclass(obj):
+                    if inspect.isfunction(attr) and obj.__name__ in str(attr):
+                        functions.append(cls(attr))
+                else:
+                    if inspect.isfunction(attr):
+                        functions.append(cls(attr))
         return functions
 
     def __repr__(self):
@@ -40,19 +44,18 @@ class BaseFunctionRDoc(object):
         return str(self.markdown)
 
 
-class BaseClassRDoc(object):
+class ClassRDoc(object):
     name: str
     sig: str
     doc: str
     toc_str: str
     link: str
-    functions: List[BaseFunctionRDoc]
+    functions: List[FunctionRDoc]
     markdown: str
 
     def __init__(self, obj: object = None):
         if not inspect.isclass(obj):
             raise TypeError(f'{obj!r} is not a class')
-
         name = re.findall("\'(.*)\'", str(obj))
         self.name = name[0] if len(name) > 0 else None
         self.sig = str(inspect.signature(getattr(obj, '__init__')))
@@ -60,7 +63,7 @@ class BaseClassRDoc(object):
         self.link = f'{self.name}_{str(self.name.__hash__()).replace("-", "")}'
         self.toc_str = f'- [ {self.name} ](#{self.link})\n'
         self.markdown = f'<a name="{self.link}"></a>\n### {self.name}{self.sig}\n\n{self.doc}\n\n'
-        self.functions = BaseFunctionRDoc.get_functions_from_object(obj)
+        self.functions = FunctionRDoc.get_functions_from_object(obj)
 
     @classmethod
     def get_classes_from_object(cls, obj: object= None):
@@ -79,12 +82,12 @@ class BaseClassRDoc(object):
         return str(self.markdown)
 
 
-class BaseModuleRDoc(object):
+class ModuleRDoc(object):
     name: str
     link: str
     toc_str: str
-    classes: List[BaseClassRDoc]
-    functions: List[BaseFunctionRDoc]
+    classes: List[ClassRDoc]
+    functions: List[FunctionRDoc]
     markdown: str
 
     def __init__(self, obj: object = None):
@@ -94,13 +97,15 @@ class BaseModuleRDoc(object):
         self.link = f'{self.name}_{str(self.name.__hash__()).replace("-", "")}'
         self.toc_str = f'- [ {self.name} ](#{self.link})\n'
         self.markdown = f'<a name="{self.link}"></a>\n## {self.name}\n\n'
-        self.classes = BaseClassRDoc.get_classes_from_object(obj)
-        self.functions = BaseFunctionRDoc.get_functions_from_object(obj)
+        self.classes = ClassRDoc.get_classes_from_object(obj)
+        self.functions = FunctionRDoc.get_functions_from_object(obj)
 
     @classmethod
     def get_modules_from_object(cls, obj: object= None):
         modules = []
         if obj:
+            if inspect.ismodule(obj):
+                modules.append(cls(obj))
             for a in dir(obj):
                 attr = getattr(obj, a)
                 if inspect.ismodule(attr) and obj.__name__ in str(attr):
@@ -126,7 +131,7 @@ class BaseModuleRDoc(object):
 
 class RDocObject(NamedTuple):
     name: str
-    modules: List[BaseModuleRDoc]
+    modules: List[ModuleRDoc]
 
 class Ridoculous(object):
     objects: List[object]
@@ -137,7 +142,7 @@ class Ridoculous(object):
         self.objects = [objects] if not isinstance(objects, list) else objects
         if self.objects:
             self.rdoc_objects = [
-                RDocObject(obj.__name__, BaseModuleRDoc.get_modules_from_object(obj))
+                RDocObject(obj.__name__, ModuleRDoc.get_modules_from_object(obj))
                 for obj in self.objects]
         self.docs = [str(rd) for rd in self.make_doc_list()]
 
