@@ -1,0 +1,1 @@
+from ridoculous.core import Ridoculous
