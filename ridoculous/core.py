@@ -147,8 +147,10 @@ class Ridoculous(object):
         #build Table of Contents
         for o in self.rdoc_objects:
             for m in o.modules:
-                if m.classes:
+                if m.functions or m.classes:
                     docs.append(m.toc_str)
+                    for f in m.functions:
+                        docs.append('\t' + f.toc_str)
                     for c in m.classes:
                         docs.append('\t'+c.toc_str)
                         for f in c.functions:
@@ -157,8 +159,10 @@ class Ridoculous(object):
         #build object docs
         for o in self.rdoc_objects:
             for m in o.modules:
-                if m.classes:
+                if m.functions or m.classes:
                     docs.append(m)
+                    for f in m.functions:
+                        docs.append(f)
                     for c in m.classes:
                         docs.append(c)
                         for f in c.functions:
