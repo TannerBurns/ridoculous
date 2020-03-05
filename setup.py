@@ -2,7 +2,7 @@ import os
 from setuptools import find_packages, setup
 
 
-with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
+with open(os.path.join(os.path.dirname(__file__), 'RIDOCULOUS_README_GENERATED_FOR_DISTUTILS.md')) as readme:
     README = readme.read()
 
 

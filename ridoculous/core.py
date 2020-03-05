@@ -163,10 +163,10 @@ class Ridoculous(object):
                         docs.append(f)
         return docs
 
-    def write(self, filename: str= 'README.md'):
+    def write(self, filename: str= 'RIDOCULOUS_README_GENERATED_FOR_DISTUTILS.md'):
         with open(filename, 'w') as fout:
             fout.write(''.join(self.docs))
 
     @classmethod
-    def makedocs(cls, objs: List[object]= None, filename: str= 'README.md'):
+    def makedocs(cls, objs: List[object]= None, filename: str= 'RIDOCULOUS_README_GENERATED_FOR_DISTUTILS.md'):
         return cls(objs).write(filename)
