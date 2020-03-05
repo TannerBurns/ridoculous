@@ -7,6 +7,8 @@ class BaseFunctionRDoc(object):
     name: str
     sig: str
     doc: str
+    link: str
+    toc_str: str
     markdown: str
 
     def __init__(self, obj: object= None):
@@ -17,7 +19,9 @@ class BaseFunctionRDoc(object):
         self.name = name[0] if len(name) > 0 else None
         self.sig = str(inspect.signature(obj))
         self.doc = obj.__doc__
-        self.markdown = f'#### `{self.name}{self.sig}`\n\n{self.doc}\n\n'
+        self.link = f'{self.name}_{str(self.name.__hash__()).replace("-","")}'
+        self.toc_str = f'- [ {self.name} ](#{self.link})\n'
+        self.markdown = f'<a name="{self.link}"></a>\n#### `{self.name}{self.sig}`\n\n{self.doc}\n\n'
 
     @classmethod
     def get_functions_from_object(cls, obj: object= None):
@@ -40,6 +44,8 @@ class BaseClassRDoc(object):
     name: str
     sig: str
     doc: str
+    toc_str: str
+    link: str
     functions: List[BaseFunctionRDoc]
     markdown: str
 
@@ -51,7 +57,9 @@ class BaseClassRDoc(object):
         self.name = name[0] if len(name) > 0 else None
         self.sig = str(inspect.signature(getattr(obj, '__init__')))
         self.doc = obj.__doc__
-        self.markdown = f'### {self.name}{self.sig}\n\n{self.doc}\n\n'
+        self.link = f'{self.name}_{str(self.name.__hash__()).replace("-", "")}'
+        self.toc_str = f'- [ {self.name} ](#{self.link})\n'
+        self.markdown = f'<a name="{self.link}"></a>\n### {self.name}{self.sig}\n\n{self.doc}\n\n'
         self.functions = BaseFunctionRDoc.get_functions_from_object(obj)
 
     @classmethod
@@ -73,14 +81,19 @@ class BaseClassRDoc(object):
 
 class BaseModuleRDoc(object):
     name: str
+    link: str
+    toc_str: str
     classes: List[BaseClassRDoc]
+    functions: List[BaseFunctionRDoc]
     markdown: str
 
     def __init__(self, obj: object = None):
         if not inspect.ismodule(obj):
             raise TypeError(f'{obj!r} is not a module')
         self.name = obj.__name__
-        self.markdown = f'## {self.name}\n\n'
+        self.link = f'{self.name}_{str(self.name.__hash__()).replace("-", "")}'
+        self.toc_str = f'- [ {self.name} ](#{self.link})\n'
+        self.markdown = f'<a name="{self.link}"></a>\n## {self.name}\n\n'
         self.classes = BaseClassRDoc.get_classes_from_object(obj)
         self.functions = BaseFunctionRDoc.get_functions_from_object(obj)
 
@@ -126,10 +139,21 @@ class Ridoculous(object):
             self.rdoc_objects = [
                 RDocObject(obj.__name__, BaseModuleRDoc.get_modules_from_object(obj))
                 for obj in self.objects]
-        self.docs = [str(rd) for rd in self.make_docs()]
+        self.docs = [str(rd) for rd in self.make_doc_list()]
 
-    def make_docs(self):
+    def make_doc_list(self):
         docs = []
+
+        #build Table of Contents
+        for o in self.rdoc_objects:
+            for m in o.modules:
+                docs.append(m.toc_str)
+                for c in m.classes:
+                    docs.append('\t'+c.toc_str)
+                    for f in c.functions:
+                        docs.append('\t\t'+f.toc_str)
+        docs.append('\n\n')
+        #build object docs
         for o in self.rdoc_objects:
             for m in o.modules:
                 docs.append(m)
