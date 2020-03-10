@@ -8,7 +8,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 
 setup(
     name='ridoculous',
-    version='0.0.3',
+    version='0.0.4',
     packages=find_packages(exclude=['examples']),
     include_package_data=True,
     description='Easily document any object to a markdown file',
