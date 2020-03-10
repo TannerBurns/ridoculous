@@ -10,35 +10,35 @@ import ridoculous.core
 ridoculous.Ridoculous.makedocs(ridoculous.core, 'RIDOCULOUS_README.md')
 ```
 
-- [ ridoculous.core ](#ridoculous.core_1274427168)
-	- [ ridoculous.core.ClassRDoc ](#ridoculous.core.ClassRDoc_719354812)
-		- [ ClassRDoc.__init__ ](#ClassRDoc.__init___844276563)
-		- [ ClassRDoc.__repr__ ](#ClassRDoc.__repr___1577567471)
-		- [ ClassRDoc.__str__ ](#ClassRDoc.__str___1751480246)
-	- [ ridoculous.core.FunctionRDoc ](#ridoculous.core.FunctionRDoc_1321699978)
-		- [ FunctionRDoc.__init__ ](#FunctionRDoc.__init___1815019343)
-		- [ FunctionRDoc.__repr__ ](#FunctionRDoc.__repr___1952554959)
-		- [ FunctionRDoc.__str__ ](#FunctionRDoc.__str___1074013109)
-	- [ ridoculous.core.ModuleRDoc ](#ridoculous.core.ModuleRDoc_187130423)
-		- [ ModuleRDoc.__init__ ](#ModuleRDoc.__init___1325179856)
-		- [ ModuleRDoc.__repr__ ](#ModuleRDoc.__repr___738113067)
-		- [ ModuleRDoc.__str__ ](#ModuleRDoc.__str___1146892586)
-	- [ ridoculous.core.RDocObject ](#ridoculous.core.RDocObject_1660684126)
-		- [ RDocObject.__getnewargs__ ](#RDocObject.__getnewargs___1571277561)
-		- [ RDocObject.__new__ ](#RDocObject.__new___1258089233)
-		- [ RDocObject.__repr__ ](#RDocObject.__repr___1933332896)
-		- [ RDocObject._asdict ](#RDocObject._asdict_119533018)
-		- [ RDocObject._replace ](#RDocObject._replace_245184568)
-	- [ ridoculous.core.Ridoculous ](#ridoculous.core.Ridoculous_1144598600)
-		- [ Ridoculous.__init__ ](#Ridoculous.__init___1453785049)
-		- [ Ridoculous.make_doc_list ](#Ridoculous.make_doc_list_1674805982)
-		- [ Ridoculous.write ](#Ridoculous.write_1184063980)
+- [ ridoculous.core ](#ridoculous.core_1529377134)
+	- [ ridoculous.core.ClassRDoc ](#ridoculous.core.ClassRDoc_277831325)
+		- [ ClassRDoc.__init__ ](#ClassRDoc.__init___1734499510)
+		- [ ClassRDoc.__repr__ ](#ClassRDoc.__repr___684002517)
+		- [ ClassRDoc.__str__ ](#ClassRDoc.__str___1102790725)
+	- [ ridoculous.core.FunctionRDoc ](#ridoculous.core.FunctionRDoc_2006125902)
+		- [ FunctionRDoc.__init__ ](#FunctionRDoc.__init___254940244)
+		- [ FunctionRDoc.__repr__ ](#FunctionRDoc.__repr___1802332811)
+		- [ FunctionRDoc.__str__ ](#FunctionRDoc.__str___374102979)
+	- [ ridoculous.core.ModuleRDoc ](#ridoculous.core.ModuleRDoc_438349111)
+		- [ ModuleRDoc.__init__ ](#ModuleRDoc.__init___273728676)
+		- [ ModuleRDoc.__repr__ ](#ModuleRDoc.__repr___737580618)
+		- [ ModuleRDoc.__str__ ](#ModuleRDoc.__str___2135828915)
+	- [ ridoculous.core.RDocObject ](#ridoculous.core.RDocObject_973396301)
+		- [ RDocObject.__getnewargs__ ](#RDocObject.__getnewargs___1737972049)
+		- [ RDocObject.__new__ ](#RDocObject.__new___671582273)
+		- [ RDocObject.__repr__ ](#RDocObject.__repr___350994193)
+		- [ RDocObject._asdict ](#RDocObject._asdict_1837743226)
+		- [ RDocObject._replace ](#RDocObject._replace_991483276)
+	- [ ridoculous.core.Ridoculous ](#ridoculous.core.Ridoculous_983589323)
+		- [ Ridoculous.__init__ ](#Ridoculous.__init___2004908398)
+		- [ Ridoculous.make_doc_list ](#Ridoculous.make_doc_list_1854256711)
+		- [ Ridoculous.write ](#Ridoculous.write_1109144762)
 
 
-<a name="ridoculous.core_1274427168"></a>
+<a name="ridoculous.core_1529377134"></a>
 ## ridoculous.core
 
-<a name="ridoculous.core.ClassRDoc_719354812"></a>
+<a name="ridoculous.core.ClassRDoc_277831325"></a>
 ### ridoculous.core.ClassRDoc(self, obj: object = None)
 
 This class documents class objects. The format will look like the following for a documented class. Link is
@@ -55,7 +55,7 @@ This class documents class objects. The format will look like the following for 
 
     
 
-<a name="ClassRDoc.__init___844276563"></a>
+<a name="ClassRDoc.__init___1734499510"></a>
 #### `ClassRDoc.__init__(self, obj: object = None)`
 
 When a new `ClassRDoc` is created, all attributes are set during init. First the `obj` that was passed
@@ -69,20 +69,20 @@ When a new `ClassRDoc` is created, all attributes are set during init. First the
 
         
 
-<a name="ClassRDoc.__repr___1577567471"></a>
+<a name="ClassRDoc.__repr___684002517"></a>
 #### `ClassRDoc.__repr__(self)`
 
 overloaded for ease of use, when class is printed, it will be the str of the markdown generated for the
-        instance of `FunctionRDoc`
+        instance of `ClassRDoc`
         
 
-<a name="ClassRDoc.__str___1751480246"></a>
+<a name="ClassRDoc.__str___1102790725"></a>
 #### `ClassRDoc.__str__(self)`
 
 overloaded for ease of use
         
 
-<a name="ridoculous.core.FunctionRDoc_1321699978"></a>
+<a name="ridoculous.core.FunctionRDoc_2006125902"></a>
 ### ridoculous.core.FunctionRDoc(self, obj: object = None)
 
 This class documents functions. The format will look like the following for a function. Link is used for a
@@ -99,7 +99,7 @@ This class documents functions. The format will look like the following for a fu
 
     
 
-<a name="FunctionRDoc.__init___1815019343"></a>
+<a name="FunctionRDoc.__init___254940244"></a>
 #### `FunctionRDoc.__init__(self, obj: object = None)`
 
 When a new `FunctionRDoc` is created, all attributes are set during init. First the `obj` that was passed
@@ -113,20 +113,20 @@ When a new `FunctionRDoc` is created, all attributes are set during init. First 
 
         
 
-<a name="FunctionRDoc.__repr___1952554959"></a>
+<a name="FunctionRDoc.__repr___1802332811"></a>
 #### `FunctionRDoc.__repr__(self) -> str`
 
 overloaded for ease of use, when class is printed, it will be the str of the markdown generated for the
         instance of `FunctionRDoc`
         
 
-<a name="FunctionRDoc.__str___1074013109"></a>
+<a name="FunctionRDoc.__str___374102979"></a>
 #### `FunctionRDoc.__str__(self) -> str`
 
 overloaded for ease of use
         
 
-<a name="ridoculous.core.ModuleRDoc_187130423"></a>
+<a name="ridoculous.core.ModuleRDoc_438349111"></a>
 ### ridoculous.core.ModuleRDoc(self, obj: object = None)
 
 This class documents module objects. The format will look like the following for a module. Link is
@@ -141,7 +141,7 @@ This class documents module objects. The format will look like the following for
 
     
 
-<a name="ModuleRDoc.__init___1325179856"></a>
+<a name="ModuleRDoc.__init___273728676"></a>
 #### `ModuleRDoc.__init__(self, obj: object = None)`
 
 When a new `ModuleRDoc` is created, all attributes are set during init. First the `obj` that was passed
@@ -154,20 +154,20 @@ When a new `ModuleRDoc` is created, all attributes are set during init. First th
 
         
 
-<a name="ModuleRDoc.__repr___738113067"></a>
+<a name="ModuleRDoc.__repr___737580618"></a>
 #### `ModuleRDoc.__repr__(self)`
 
 overloaded for ease of use, when class is printed, it will be the str of the markdown generated for the
-        instance of `FunctionRDoc`
+        instance of `ModuleRDoc`
         
 
-<a name="ModuleRDoc.__str___1146892586"></a>
+<a name="ModuleRDoc.__str___2135828915"></a>
 #### `ModuleRDoc.__str__(self)`
 
 overloaded for ease of use
         
 
-<a name="ridoculous.core.RDocObject_1660684126"></a>
+<a name="ridoculous.core.RDocObject_973396301"></a>
 ### ridoculous.core.RDocObject(self, /, *args, **kwargs)
 
 An `RDocObject` is a container object that is the starting object to document. The name will be taken
@@ -179,32 +179,32 @@ An `RDocObject` is a container object that is the starting object to document. T
         modules {List[ModuleRDoc]} -- list holding the documented modules
     
 
-<a name="RDocObject.__getnewargs___1571277561"></a>
+<a name="RDocObject.__getnewargs___1737972049"></a>
 #### `RDocObject.__getnewargs__(self)`
 
 Return self as a plain tuple.  Used by copy and pickle.
 
-<a name="RDocObject.__new___1258089233"></a>
+<a name="RDocObject.__new___671582273"></a>
 #### `RDocObject.__new__(_cls, name: str, modules: List[ridoculous.core.ModuleRDoc])`
 
 Create new instance of RDocObject(name, modules)
 
-<a name="RDocObject.__repr___1933332896"></a>
+<a name="RDocObject.__repr___350994193"></a>
 #### `RDocObject.__repr__(self)`
 
 Return a nicely formatted representation string
 
-<a name="RDocObject._asdict_119533018"></a>
+<a name="RDocObject._asdict_1837743226"></a>
 #### `RDocObject._asdict(self)`
 
 Return a new OrderedDict which maps field names to their values.
 
-<a name="RDocObject._replace_245184568"></a>
+<a name="RDocObject._replace_991483276"></a>
 #### `RDocObject._replace(_self, **kwds)`
 
 Return a new RDocObject object replacing specified fields with new values
 
-<a name="ridoculous.core.Ridoculous_1144598600"></a>
+<a name="ridoculous.core.Ridoculous_983589323"></a>
 ### ridoculous.core.Ridoculous(self, objects: List[object] = None)
 
 Ridoculous - making documentation for any python object
@@ -218,7 +218,7 @@ Ridoculous - making documentation for any python object
 
     
 
-<a name="Ridoculous.__init___1453785049"></a>
+<a name="Ridoculous.__init___2004908398"></a>
 #### `Ridoculous.__init__(self, objects: List[object] = None)`
 
 The given list of objects will be parsed and ready to be documented. The list of strings that are written to
@@ -228,7 +228,7 @@ The given list of objects will be parsed and ready to be documented. The list of
             objects {List[object]} -- a list of object to document
         
 
-<a name="Ridoculous.make_doc_list_1674805982"></a>
+<a name="Ridoculous.make_doc_list_1854256711"></a>
 #### `Ridoculous.make_doc_list(self)`
 
 creates the list of markdown strings to be help in `.docs`. firstly iterates over the RDocObjects and creates
@@ -238,7 +238,7 @@ creates the list of markdown strings to be help in `.docs`. firstly iterates ove
             list -- a list of markdown strings to be written in a file
         
 
-<a name="Ridoculous.write_1184063980"></a>
+<a name="Ridoculous.write_1109144762"></a>
 #### `Ridoculous.write(self, filename: str = 'GENERATED_README.md')`
 
 write `.docs` to a file

@@ -146,7 +146,7 @@ class ClassRDoc(object):
 
     def __repr__(self):
         """overloaded for ease of use, when class is printed, it will be the str of the markdown generated for the
-        instance of `FunctionRDoc`
+        instance of `ClassRDoc`
         """
         return str(self.markdown)
 
@@ -218,7 +218,7 @@ class ModuleRDoc(object):
 
     def __repr__(self):
         """overloaded for ease of use, when class is printed, it will be the str of the markdown generated for the
-        instance of `FunctionRDoc`
+        instance of `ModuleRDoc`
         """
         return str(self.markdown)
 
